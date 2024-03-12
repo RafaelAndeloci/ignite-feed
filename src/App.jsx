@@ -1,9 +1,48 @@
-import { Post } from './components/Post/Post';
-import { Header } from './components/Header/Header';
-import { SideBar } from './components/SideBar/SideBar';
+import { Post } from "./components/Post/Post";
+import { Header } from "./components/Header/Header";
+import { SideBar } from "./components/SideBar/SideBar";
 
-import './global.css';
-import styles from './App.module.css';
+import "./global.css";
+import styles from "./App.module.css";
+
+const posts = [
+  {
+    id: 1,
+    author: {
+      avatarUrl: "https://github.com/RafaelAndeloci.png",
+      name: "Rafael Andeloci",
+      role: "Junior Developer",
+    },
+    content: [
+      { type: "paragraph", content: "Fala galeraa 👋" },
+      {
+        type: "paragraph",
+        content:
+          "Acabei de subir mais um projeto no meu porifa. É um projeto que fiz no NLW Return, evento da rocketseat",
+      },
+      { type: "link", content: "jane.design/doctorcare" },
+    ],
+    publishedAt: new Date("2022-05-03 20:00:00"),
+  },
+  {
+    id: 2,
+    author: {
+      avatarUrl: "https://github.com/diego3g.png",
+      name: "Diego Fernandes",
+      role: "CTO @ Rocketseat",
+    },
+    content: [
+      { type: "paragraph", content: "Fala galeraa 👋" },
+      {
+        type: "paragraph",
+        content:
+          "Acabei de subir mais um projeto no meu porifa. É um projeto que fiz no NLW Return, evento da rocketseat",
+      },
+      { type: "link", content: "jane.design/doctorcare" },
+    ],
+    publishedAt: new Date("2024-03-10 20:00:00"),
+  },
+];
 
 function App() {
   return (
@@ -13,11 +52,16 @@ function App() {
       <div className={styles.wrapper}>
         <SideBar />
         <main>
-          <Post
-            author="Diego Fernandes"
-            content="Est eu nostrud magna dolore incididunt Lorem do tempor qui aliqua ad anim excepteur. Voluptate ea occaecat exercitation amet ea mollit ullamco ipsum exercitation deserunt in elit voluptate cillum. Occaecat nisi magna exercitation pariatur proident. Officia esse esse nulla enim laboris aliqua exercitation ex."
-          />
-          <Post author="Gabriel Buzzi" content="Um novo post muito legal" />
+          {posts.map((post) => {
+            return (
+              <Post
+                key={post.id}
+                author={post.author}
+                content={post.content}
+                publishedAt={post.publishedAt}
+              />
+            );
+          })}
         </main>
       </div>
     </>
